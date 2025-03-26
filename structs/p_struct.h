@@ -8,7 +8,7 @@
 #include "vector"
 using namespace std;
 
-struct process{ // structure of data passed to reader/writer as an object (change it if different arguments are needed)
+struct process{
     string id;
     int  cTime;
     int aTime;

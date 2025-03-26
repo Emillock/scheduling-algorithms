@@ -8,7 +8,7 @@
 #include "vector"
 using namespace std;
 
-struct algOut{ // structure of data passed to reader/writer as an object (change it if different arguments are needed)
+struct algOut{
     vector<string> pOrder;
     float  avgTurnaround;
     float  avgWait;
