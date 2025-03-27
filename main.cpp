@@ -4,7 +4,7 @@
 #include "structs/p_struct.h"
 #include "structs/test_case_struct.h"
 #include "tests/test_cases.h"
-#include "algos/fcfs.h"
+#include "algs/fcfs.h"
 
 using namespace std;
 
