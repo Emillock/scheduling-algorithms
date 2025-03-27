@@ -51,10 +51,7 @@ algOut sjf(const vector<process> &processes) {
     sort(queue.begin(), queue.end(), [&](const string &id1, const string &id2) {
         return cTimes.at(id1) < cTimes.at(id2);
     });
-    cout<<"queue: ";
-    for(auto i:queue){
-        cout<<i<<" ";
-    }
+
     cout<<endl;
     while (!queue.empty()) {
         order.push_back(queue[0]);
