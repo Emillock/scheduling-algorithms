@@ -78,18 +78,27 @@ algOut sjf(const vector<process> &processes) {
     }
 
 
-    int sum = 0;
-    int aSum = 0;
-    for (const string &id: order) {
-        int bTime = bTimes.at(id);
-        avgTurnaround += sum + bTime;
-        sum += bTime;
+    int startT = aTimes.at(ids[0]);
+
+    vector<int> cTimes;
+    vector<int> tTimes;
+    vector<int> wTimes;
+    for (int i=0;i<ids.size();++i) {
+        string id=ids[i];
+        int cTime = startT + bTimes.at(id);
+        cTimes.push_back(cTime);
+        startT = i!=ids.size()-1 && aTimes.at(ids[i + 1]) > cTime ? aTimes.at(ids[i + 1]) : cTime;
 
         int aTime = aTimes.at(id);
-        bool isATimeBigger = aTime > aSum;
-        avgWait += isATimeBigger ? aTime : aSum;
-        if (isATimeBigger)aSum = aTime + bTime;
-        else aSum += bTime;
+        int bTime = bTimes.at(id);
+        int tTime = cTime - aTime;
+        tTimes.push_back(tTime);
+        avgTurnaround += tTime;
+
+        int wTime = tTime - bTime;
+        wTimes.push_back(wTime);
+        avgWait += wTime;
+//        cout << id << " " << startT << " " << cTime << " " << tTime << " " << wTime << endl;
     }
     avgWait /= processes.size();
     avgTurnaround /= processes.size();
