@@ -33,11 +33,11 @@ algOut fcfs(const vector<process> &processes) {
     vector<int> cTimes;
     vector<int> tTimes;
     vector<int> wTimes;
-    for (int i=0;i<ids.size();++i) {
-        string id=ids[i];
+    for (int i = 0; i < ids.size(); ++i) {
+        string id = ids[i];
         int cTime = startT + bTimes.at(id);
         cTimes.push_back(cTime);
-        startT = i!=ids.size()-1 && aTimes.at(ids[i + 1]) > cTime ? aTimes.at(ids[i + 1]) : cTime;
+        startT = i != ids.size() - 1 && aTimes.at(ids[i + 1]) > cTime ? aTimes.at(ids[i + 1]) : cTime;
 
         int aTime = aTimes.at(id);
         int bTime = bTimes.at(id);
@@ -53,7 +53,7 @@ algOut fcfs(const vector<process> &processes) {
     avgWait /= processes.size();
     avgTurnaround /= processes.size();
 
-    return {ids, round2D(avgTurnaround), round2D(avgWait)};
+    return {ids, cTimes, tTimes, wTimes, round2D(avgTurnaround), round2D(avgWait)};
 }
 
 #endif //UNTITLED3_FCFS_H

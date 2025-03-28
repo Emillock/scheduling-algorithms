@@ -10,6 +10,9 @@ using namespace std;
 
 struct algOut{
     vector<string> pOrder;
+    vector<int> cTimes;
+    vector<int> tTimes;
+    vector<int> wTimes;
     float  avgTurnaround;
     float  avgWait;
 };

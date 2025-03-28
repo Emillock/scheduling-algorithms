@@ -103,7 +103,7 @@ algOut sjf(const vector<process> &processes) {
     avgWait /= processes.size();
     avgTurnaround /= processes.size();
 
-    return {order, round2D(avgTurnaround), round2D(avgWait)};
+    return {order, cTimes, tTimes, wTimes, round2D(avgTurnaround), round2D(avgWait)};
 }
 
 #endif //UNTITLED3_SJF_H
