@@ -11,7 +11,7 @@ using namespace std;
 
 
 int main() {
-    int cnt = 0;
+    int cnt = 1;
 
     for (const testCase &testCase: testCases) {
         cout << "Test number " << cnt++ << endl;
@@ -19,7 +19,7 @@ int main() {
         algOut resFcfs = fcfs(testCase.processes);
         algOut resSjf = sjf(testCase.processes);
         algOut expected = testCase.fcfsRes;
-        cout<<"FCFS Results: ";
+        cout << "FCFS Results: ";
         cout << "order: ";
         for (const string &s: resFcfs.pOrder) cout << s << " ";
         cout << (resFcfs.pOrder == expected.pOrder ? "+" : "-") << endl;
@@ -32,7 +32,7 @@ int main() {
 
         cout << endl;
 
-        cout<<"SJF Results: ";
+        cout << "SJF Results: ";
         cout << "order: ";
         for (const string &s: resSjf.pOrder) cout << s << " ";
         cout << (resSjf.pOrder == expected.pOrder ? "+" : "-") << endl;

@@ -10,7 +10,7 @@ using namespace std;
 
 struct process{
     string id;
-    int  cTime;
+    int  bTime;
     int aTime;
     int priority;
 };

@@ -12,14 +12,14 @@
 
 algOut fcfs(const vector<process> &processes) {
     vector<string> ids;
-    map<string, int> cTimes;
+    map<string, int> bTimes;
     map<string, int> aTimes;
     float avgTurnaround = 0;
     float avgWait = 0;
 
     for (const process &p: processes) {
         ids.push_back(p.id);
-        cTimes.insert({p.id, p.cTime});
+        bTimes.insert({p.id, p.bTime});
         aTimes.insert({p.id, p.aTime});
     }
 
@@ -27,18 +27,19 @@ algOut fcfs(const vector<process> &processes) {
         return aTimes.at(id1) < aTimes.at(id2);
     });
 
-    int sum = 0;
+    int sum = aTimes.at(ids[0]);
     int aSum = 0;
+    map<string, int> turnTimes;
     for (const string &id: ids) {
-        int cTime = cTimes.at(id);
-        avgTurnaround += sum + cTime;
-        sum += cTime;
+        int bTime = bTimes.at(id);
+        avgTurnaround += sum + bTime;
+        sum += bTime;
 
         int aTime = aTimes.at(id);
         bool isATimeBigger = aTime > aSum;
         avgWait += isATimeBigger ? aTime : aSum;
-        if (isATimeBigger)aSum = aTime + cTime;
-        else aSum += cTime;
+        if (isATimeBigger)aSum = aTime + bTime;
+        else aSum += bTime;
     }
     avgWait /= processes.size();
     avgTurnaround /= processes.size();
