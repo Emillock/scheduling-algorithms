@@ -6,6 +6,7 @@
 #include "tests/test_cases.h"
 #include "algs/fcfs.h"
 #include "algs/sjf.h"
+#include "algs/priority.h"
 
 using namespace std;
 
@@ -18,8 +19,9 @@ int main() {
 
         algOut resFcfs = fcfs(testCase.processes);
         algOut resSjf = sjf(testCase.processes);
+        algOut resPriority = priority(testCase.processes);
         algOut expected = testCase.fcfsRes;
-        cout << "FCFS Results: ";
+        cout << "FCFS Results: " << endl;
         cout << "order: ";
         for (const string &s: resFcfs.pOrder) cout << s << " ";
         cout << (resFcfs.pOrder == expected.pOrder ? "+" : "-") << endl;
@@ -32,7 +34,7 @@ int main() {
 
         cout << endl;
 
-        cout << "SJF Results: ";
+        cout << "SJF Results: " << endl;
         cout << "order: ";
         for (const string &s: resSjf.pOrder) cout << s << " ";
         cout << (resSjf.pOrder == expected.pOrder ? "+" : "-") << endl;
@@ -42,6 +44,19 @@ int main() {
 
         cout << "avgWait: " << resSjf.avgWait <<
              (resSjf.avgWait == expected.avgWait ? " +" : " -") << endl;
+
+        cout << endl;
+
+        cout << "Priority (non-preemptive) Results: " << endl;
+        cout << "order: ";
+        for (const string &s: resPriority.pOrder) cout << s << " ";
+        cout << (resPriority.pOrder == expected.pOrder ? "+" : "-") << endl;
+
+        cout << "avgTurnaround: " << resPriority.avgTurnaround <<
+             (resPriority.avgTurnaround == expected.avgTurnaround ? " +" : " -") << endl;
+
+        cout << "avgWait: " << resPriority.avgWait <<
+             (resPriority.avgWait == expected.avgWait ? " +" : " -") << endl;
 
         cout << endl;
     }
