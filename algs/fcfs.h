@@ -4,7 +4,7 @@
 
 #ifndef UNTITLED3_FCFS_H
 #define UNTITLED3_FCFS_H
-
+#include <iostream>
 #include <map>
 #include <algorithm>
 #include "../structs/p_struct.h"

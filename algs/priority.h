@@ -1,9 +1,9 @@
 //
-// Created by User on 27.03.2025.
+// Created by User on 31.03.2025.
 //
 
-#ifndef UNTITLED3_SJF_H
-#define UNTITLED3_SJF_H
+#ifndef UNTITLED3_PRIORITY_H
+#define UNTITLED3_PRIORITY_H
 #include <iostream>
 #include <map>
 #include <algorithm>
@@ -12,9 +12,10 @@
 #include "../utils/round_func.h"
 using namespace std;
 
-algOut sjf(const vector<process> &processes) {
+algOut priority(const vector<process> &processes) {
     vector<string> ids;
     map<string, int> bTimes;
+    map<string, int> priorities;
     map<string, int> aTimes;
     float avgTurnaround = 0;
     float avgWait = 0;
@@ -23,11 +24,12 @@ algOut sjf(const vector<process> &processes) {
         ids.push_back(p.id);
         bTimes.insert({p.id, p.bTime});
         aTimes.insert({p.id, p.aTime});
+        priorities.insert({p.id, p.priority});
     }
 
     sort(ids.begin(), ids.end(), [&](const string &id1, const string &id2) {
         if (aTimes.at(id1) != aTimes.at(id2))return aTimes.at(id1) < aTimes.at(id2);
-        else return bTimes.at(id1) < bTimes.at(id2);
+        else return priorities.at(id1) < priorities.at(id2);
     });
 
     int t = aTimes.at(ids[0]) + bTimes.at(ids[0]);
@@ -50,7 +52,7 @@ algOut sjf(const vector<process> &processes) {
     }
 
     sort(queue.begin(), queue.end(), [&](const string &id1, const string &id2) {
-        return bTimes.at(id1) < bTimes.at(id2);
+        return priorities.at(id1) < priorities.at(id2);
     });
 
     cout << endl;
@@ -74,7 +76,7 @@ algOut sjf(const vector<process> &processes) {
             }
         }
         sort(queue.begin(), queue.end(), [&](const string &id1, const string &id2) {
-            return bTimes.at(id1) < bTimes.at(id2);
+            return priorities.at(id1) < priorities.at(id2);
         });
     }
 
@@ -107,4 +109,5 @@ algOut sjf(const vector<process> &processes) {
     return {order, cTimes, tTimes, wTimes, round2D(avgTurnaround), round2D(avgWait)};
 }
 
-#endif //UNTITLED3_SJF_H
+
+#endif //UNTITLED3_PRIORITY_H
