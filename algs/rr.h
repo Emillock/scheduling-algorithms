@@ -12,7 +12,7 @@
 #include "../utils/round_func.h"
 using namespace std;
 
-algOut round_robin(const vector<process> &processes, int quantum) {
+algOut roundRobin(const vector<process> &processes, int quantum) {
     unsigned long long n=processes.size();
     vector<int> remaining_burst; // Remaining burst times
     vector<int> waiting_time;   // Waiting times
